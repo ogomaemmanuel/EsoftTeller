@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Account Balances
+    </ion-title>
+  </ion-navbar>
+  <!-- <ion-searchbar
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar> -->
+</ion-header>
+
+
+<ion-content>
+  <ion-list list-ios>
+    <button ion-item (click)="getSavingsBalances()">
+      Savings
+    </button>
+    <button ion-item (click)="getLoanBalances()">
+      Loans
+    </button>
+    <button ion-item (click)="getShareBalances()">
+      Shares
+    </button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title> {{accountType}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <button ion-item *ngFor="let accountDetail of customerAccounts" (click)="getMiniStatement(accountDetail)">
+        {{accountDetail.productName|trim|titlecase}}
+        <ion-note item-end>
+          {{accountDetail.accountNo|trim}}
+        </ion-note>
+      </button>
+  </ion-list>
+</ion-content>

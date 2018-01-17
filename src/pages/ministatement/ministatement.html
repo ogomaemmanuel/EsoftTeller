@@ -1,0 +1,23 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>Ministatement</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-title text-center>{{product|titlecase}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div text-center style="margin-top:10%" *ngIf="ministatements.length==0">
+        No transaction for this account
+    </div>
+    <div *ngIf="ministatements.length>0">
+  <ion-list >
+    <button ion-item *ngFor="let item of ministatements">
+      <small>{{ item.referenceNo }}</small>
+      <p>{{ item.amount|currency:'ksh':true }} &nbsp;&nbsp; {{ item.transactionDate|date:'medium' }}</p>
+    </button>  
+  </ion-list>
+</div>
+</ion-content>

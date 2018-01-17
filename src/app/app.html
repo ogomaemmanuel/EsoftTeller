@@ -1,0 +1,36 @@
+<ion-menu id="app-menu" [content]="content" class="app-menu">
+  <ion-header style="background-color:#0400FF;color:white">
+    <ion-list style="background-color:#0400FF;color:white">
+      <ion-item style="background-color:#0400FF;color:white">
+        <ion-avatar item-left>
+          <img src="https://www.joshmorony.com/wp-content/uploads/2016/07/cloudo-screenshots.png">
+        </ion-avatar>
+        <h2>{{customer.customerName|trim|titlecase}}</h2>
+        <h3>{{customer.mobileNo}}</h3>
+      </ion-item>
+    </ion-list>
+  </ion-header>
+  <ion-content class="app-menu">
+    <ion-list>
+      <button  *ngFor="let p of pageSettings" ion-item (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon>&nbsp; &nbsp;
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+<ion-footer>
+  <!-- <ion-segment [(ngModel)]="icons" color="secondary">
+    <ion-segment-button value="camera">
+      <ion-icon name="camera"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="bookmark">
+      <ion-icon name="bookmark"></ion-icon>
+    </ion-segment-button>
+  </ion-segment> -->
+  <p ion-text text-center color="primary">Powered By Ecom Technologies Ltd</p>
+  
+</ion-footer>
+
+</ion-menu>
+
+<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
