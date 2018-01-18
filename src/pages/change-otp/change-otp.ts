@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountsDetailsServiceProvider } from '../../providers/acconts-details-service/acconts-details-service';
 import { ErrorAlertProvider } from '../../providers/error-alert/error-alert';
 import { PasswordValidation } from '../../commonFunctions/EqualValidator';
-import { LoginPage } from '../login/login';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { LoadingController } from 'ionic-angular';
 /**
@@ -61,7 +60,7 @@ export class ChangeOtpPage implements OnInit {
           buttons: [{
             text: 'ok',
             handler: () => {
-              this.navCtrl.setRoot(LoginPage);
+              this.navCtrl.setRoot('LoginPage');
             }
           }]
         })

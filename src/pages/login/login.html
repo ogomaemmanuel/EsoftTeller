@@ -19,11 +19,11 @@
     <ion-list>
       <ion-item>
         <ion-label floating>Member No</ion-label>
-        <ion-input type="text" maxlength="6" formControlName="MemberNo"></ion-input>
+        <ion-input type="number" maxlength="6" formControlName="MemberNo"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Pin</ion-label>
-        <ion-input maxlength="4" type="password" formControlName="Pin"></ion-input>
+        <ion-input maxlength="4" type="password"  pattern="\\d+" formControlName="Pin"></ion-input>
       </ion-item>
     </ion-list>
     <div>

@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AccountDetail } from '../../models/accountDetails';
 import { DepositTransactionProvider } from '../../providers/deposit-transaction/deposit-transaction';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DepositsMenuPage } from '../deposits-menu/deposits-menu';
-import { HomePage } from '../home/home';
 import { DeviceInfoProvider } from '../../providers/device-info/device-info';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { GreatorThanZeroValidator } from '../../commonFunctions/GreatorThanZeroValidator';
@@ -87,14 +85,14 @@ export class DepositTransactionPage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.navCtrl.push(DepositsMenuPage, { customer: this.customer });
+            this.navCtrl.push('DepositsMenuPage', { customer: this.customer });
           }
         },
         {
           text: 'No',
           role: 'cancel',
           handler: () => {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot('HomePage');
           }
         }
       ]

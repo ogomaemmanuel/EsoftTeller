@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { ChangePasswordPage } from '../change-password/change-password';
 
 /**
  * Generated class for the ExtraMenuPopoverPage page.
@@ -23,7 +22,7 @@ export class ExtraMenuPopoverPage {
    
   }
   OpenChangePasswordPage() {
-    this.navCtrl.push(ChangePasswordPage).then(() => { this.viewCtrl.dismiss(ExtraMenuPopoverPage); });
+    this.navCtrl.push('ChangePasswordPage').then(() => { this.viewCtrl.dismiss('ExtraMenuPopoverPage'); });
    
   }
 

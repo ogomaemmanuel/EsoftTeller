@@ -82,7 +82,7 @@ export class RegistrationPage implements OnInit {
                 text: 'ok',
                 role: 'cancel',
                 handler: () => {
-                  this.navCtrl.setRoot(LoginPage);
+                  this.navCtrl.setRoot('LoginPage');
                 }
               },
             ]

@@ -23,7 +23,6 @@ import { AtmCardsPage } from '../pages/atm-cards/atm-cards';
 import { ContactUsPage } from '../pages/contact-us/contact-us';
 import { RegistrationPage } from '../pages/registration/registration';
 import { DepositMainPage } from '../pages/deposit-main/deposit-main';
-import { DepositProductCategoryPage } from '../pages/deposit-product-category/deposit-product-category';
 import { DepositsMenuPage } from '../pages/deposits-menu/deposits-menu';
 import { DepositTransactionProvider } from '../providers/deposit-transaction/deposit-transaction';
 import { DepositTransactionPage } from '../pages/deposit-transaction/deposit-transaction';
@@ -41,26 +40,9 @@ import { CompanyDetailsProvider } from '../providers/company-details/company-det
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    LoginPage,
-    BalacesPage,
     TrimPipe,
-    BalancesDetailsPage,
-    MinistatementMenuPage,
-    MinistatementAccountsPage,
-    MinistatementPage,
-    AtmCardsPage,
-    ContactUsPage,
-    RegistrationPage,
-    DepositMainPage,
-    DepositProductCategoryPage,
-    DepositsMenuPage,
-    DepositTransactionPage,
-    ChangeOtpPage,
-    SettingsPage,
-    ChangePasswordPage,
-    ExtraMenuPopoverPage,
-    ForgotPasswordPage
+   
+    
   ],
   imports: [
     BrowserModule,
@@ -74,27 +56,6 @@ import { CompanyDetailsProvider } from '../providers/company-details/company-det
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    LoginPage,
-    BalacesPage,
-    BalancesDetailsPage,
-    MinistatementMenuPage,
-    MinistatementAccountsPage,
-    MinistatementPage,
-    AtmCardsPage,
-    ContactUsPage,
-    RegistrationPage,
-    DepositMainPage,
-    //one to be reomoved
-    DepositProductCategoryPage,
-    DepositsMenuPage,
-    DepositTransactionPage,
-    ChangeOtpPage,
-    SettingsPage,
-    ChangePasswordPage,
-    ExtraMenuPopoverPage,
-    ForgotPasswordPage
-    
   ],
   providers: [
     StatusBar,

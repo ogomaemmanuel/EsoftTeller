@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Events, LoadingController } from 'ionic-angular';
 import { AccountsDetailsServiceProvider } from '../../providers/acconts-details-service/acconts-details-service';
 import { AccountDetail } from '../../models/accountDetails';
-import { BalancesDetailsPage } from '../balances-details/balances-details';
 import { Http } from '@angular/http';
 import { Customer } from '../../models/customer';
 import { CustomerProvider } from '../../providers/customer/customer';
@@ -52,7 +51,7 @@ export class BalacesPage implements OnInit {
       this.accountdetailProv.getSavingsAccountDetails(customerId).subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
-        let modal = this.modalCtrl.create(BalancesDetailsPage,{accountDetails:this.accountDetails,modalTitle:"Saving Balances" });
+        let modal = this.modalCtrl.create('BalancesDetailsPage',{accountDetails:this.accountDetails,modalTitle:"Saving Balances" });
         modal.present();
       });
     });
@@ -68,7 +67,7 @@ export class BalacesPage implements OnInit {
       .subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
-        let modal = this.modalCtrl.create(BalancesDetailsPage,
+        let modal = this.modalCtrl.create('BalancesDetailsPage',
           {accountDetails:this.accountDetails,modalTitle:"Share Balances" });
         modal.present();
       });
@@ -84,7 +83,7 @@ export class BalacesPage implements OnInit {
       this.accountdetailProv.getLoansAccountDetails(customerId).subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
-        let modal = this.modalCtrl.create(BalancesDetailsPage,{accountDetails:this.accountDetails,modalTitle:"Loan Balaces" });
+        let modal = this.modalCtrl.create('BalancesDetailsPage',{accountDetails:this.accountDetails,modalTitle:"Loan Balaces" });
         modal.present();
       });
     });

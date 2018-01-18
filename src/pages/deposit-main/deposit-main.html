@@ -13,7 +13,7 @@
   <form class="list" [formGroup]="customerFormGroup" (ngSubmit)="submit()">
         <ion-item>
           <ion-label floating>Customer No</ion-label>
-          <ion-input maxlength="6" type="text" formControlName="CustomerNo"></ion-input>
+          <ion-input maxlength="6" type="number" formControlName="CustomerNo"></ion-input>
         </ion-item>
         <div padding>
           <button type="submit" [disabled]="!customerFormGroup.valid" type="submit" ion-button block>Next</button>

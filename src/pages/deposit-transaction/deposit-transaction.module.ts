@@ -9,5 +9,8 @@ import { DepositTransactionPage } from './deposit-transaction';
   imports: [
     IonicPageModule.forChild(DepositTransactionPage),
   ],
+  exports:[
+    DepositTransactionPage
+  ]
 })
 export class DepositTransactionPageModule {}

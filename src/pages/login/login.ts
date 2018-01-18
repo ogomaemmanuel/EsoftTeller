@@ -80,10 +80,10 @@ export class LoginPage implements OnInit {
       if (loginStatus.ok) {
         loader.dismiss();
         if (loginStatus.json().user.otPwrd)
-          this.navCtrl.push(ChangeOtpPage, { userId: loginStatus.json().user.tbl_CustomerId });
+          this.navCtrl.push('ChangeOtpPage', { userId: loginStatus.json().user.tbl_CustomerId });
         else {
           this.storeUserMemberNo(MemberNo);
-          this.navCtrl.setRoot(HomePage, { userId: loginStatus.json().user.tbl_CustomerId });
+          this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().user.tbl_CustomerId });
         }
       }
     }, error => {
@@ -98,11 +98,11 @@ export class LoginPage implements OnInit {
     });
   }
   goToRegistrationPage() {
-    this.navCtrl.push(RegistrationPage)
+    this.navCtrl.push('RegistrationPage')
   }
 
   goToContactUsPage() {
-    this.navCtrl.push(ContactUsPage);
+    this.navCtrl.push('ContactUsPage');
   }
   presentToast(message: string) {
     let toast = this.toastCtrl.create({
@@ -113,7 +113,7 @@ export class LoginPage implements OnInit {
     toast.present();
   }
   gotToForgotPasswordPage() {
-    this.navCtrl.push(ForgotPasswordPage);
+    this.navCtrl.push('ForgotPasswordPage');
   }
 
   storeUserMemberNo(memberNo: string) {

@@ -9,5 +9,8 @@ import { ChangeOtpPage } from './change-otp';
   imports: [
     IonicPageModule.forChild(ChangeOtpPage),
   ],
+  exports:[
+    ChangeOtpPage
+  ]
 })
 export class ChangeOtpPageModule {}

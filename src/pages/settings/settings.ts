@@ -33,7 +33,7 @@ export class SettingsPage {
     console.log('ionViewDidLoad SettingsPage');
   }
   OpenChangePasswordPage() {
-    this.navCtrl.push(ChangePasswordPage);
+    this.navCtrl.push('ChangePasswordPage');
   }
 
   DeactivateAccount() {
@@ -44,7 +44,7 @@ export class SettingsPage {
             {
               text: 'ok',
               handler: data => {
-               this.navCtrl.setRoot(LoginPage);
+               this.navCtrl.setRoot('LoginPage');
               }
             },
           ],

@@ -9,5 +9,8 @@ import { BalancesDetailsPage } from './balances-details';
   imports: [
     IonicPageModule.forChild(BalancesDetailsPage),
   ],
+  exports:[
+    BalancesDetailsPage
+  ]
 })
 export class BalancesDetailsPageModule {}

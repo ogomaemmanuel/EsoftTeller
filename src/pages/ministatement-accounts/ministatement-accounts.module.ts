@@ -9,5 +9,8 @@ import { MinistatementAccountsPage } from './ministatement-accounts';
   imports: [
     IonicPageModule.forChild(MinistatementAccountsPage),
   ],
+  exports:[
+    MinistatementAccountsPage
+  ]
 })
 export class MinistatementAccountsPageModule {}

@@ -9,5 +9,8 @@ import { AtmCardsPage } from './atm-cards';
   imports: [
     IonicPageModule.forChild(AtmCardsPage),
   ],
+  exports:[
+    AtmCardsPage
+  ]
 })
 export class AtmCardsPageModule {}

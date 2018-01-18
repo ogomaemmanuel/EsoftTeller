@@ -69,7 +69,7 @@ export class MinistatementAccountsPage implements OnInit {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
-        this.navCtrl.push(MinistatementPage, { ministatements: this.miniStatements,product:this.selectedProduct });
+        this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
     });
   }
@@ -84,7 +84,7 @@ export class MinistatementAccountsPage implements OnInit {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
-        this.navCtrl.push(MinistatementPage, { ministatements: this.miniStatements,product:this.selectedProduct });
+        this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
     });
 

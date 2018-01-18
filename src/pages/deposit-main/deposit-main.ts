@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerDetailsserviceProvider } from '../../providers/customer-detailsservice/customer-detailsservice';
-import { DepositProductCategoryPage } from '../deposit-product-category/deposit-product-category';
 import { DepositsMenuPage } from '../deposits-menu/deposits-menu';
 
 /**
@@ -68,7 +67,7 @@ export class DepositMainPage {
         {
           text: 'Yes',
           handler: () => {
-            this.navCtrl.push(DepositsMenuPage, { customer: customer });
+            this.navCtrl.push('DepositsMenuPage', { customer: customer });
           }
         },
         {

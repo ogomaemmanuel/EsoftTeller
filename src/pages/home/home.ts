@@ -10,7 +10,7 @@ import { AtmCardsPage } from '../atm-cards/atm-cards';
 import { PopoverController } from 'ionic-angular/components/popover/popover-controller';
 import { ExtraMenuPopoverPage } from '../extra-menu-popover/extra-menu-popover';
 import { CompanyDetailsProvider } from '../../providers/company-details/company-details';
-import { DepositMainPage } from '../deposit-main/deposit-main';
+import { IonicPage } from 'ionic-angular/navigation/ionic-page';
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -24,6 +24,7 @@ export interface PageInterface {
   providers: [CustomerDetailsserviceProvider],
 
 })
+@IonicPage()
 export class HomePage implements OnInit {
 
   private customer: Customer;
@@ -67,13 +68,13 @@ export class HomePage implements OnInit {
     this.getCompanyName();
   }
   goToDepositCash() {
-    this.navCtrl.push(DepositMainPage);
+    this.navCtrl.push('DepositMainPage');
   }
 
 
 
   presentExtraMenuPopover(event: any) {
-    let popover = this.popoverCtrl.create(ExtraMenuPopoverPage);
+    let popover = this.popoverCtrl.create('ExtraMenuPopoverPage');
     popover.present({
       ev: event
     });

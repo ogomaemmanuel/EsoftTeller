@@ -40,7 +40,7 @@ export class MinistatementMenuPage {
       this.ministatementProvider.getLoansAccounts(userId).subscribe(userLoanAccounts => {
         loader.dismiss();
         this.accounts = userLoanAccounts;
-        this.navCtrl.push(MinistatementAccountsPage, { accounts: this.accounts, accountType: "Loans Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Loans Accounts" })
       })
     })
 
@@ -57,7 +57,7 @@ export class MinistatementMenuPage {
         this.accounts = userLoanAccounts;
         loader.dismiss();
         console.log("accounts from api", userLoanAccounts, "Accpunts", this.accounts);
-        this.navCtrl.push(MinistatementAccountsPage, { accounts: this.accounts, accountType: "Savings Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Savings Accounts" })
       })
     })
 
@@ -71,7 +71,7 @@ export class MinistatementMenuPage {
       this.ministatementProvider.getSharesAccounts(userId).subscribe(userLoanAccounts => {
         this.accounts = userLoanAccounts;
         loader.dismiss();
-        this.navCtrl.push(MinistatementAccountsPage, { accounts: this.accounts, accountType: "Shares Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Shares Accounts" })
       })
     })
 

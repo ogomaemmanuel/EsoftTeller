@@ -18,7 +18,7 @@ import { SettingsPage } from '../pages/settings/settings';
 })
 export class MyApp {
   customer: Customer = new Customer();
-  rootPage: any = LoginPage;
+  rootPage: any = 'LoginPage';
   @ViewChild(Nav) nav: Nav;
   pageSettings: Array<{ title: string, page: any,icon:string }>;
   constructor(
@@ -38,11 +38,11 @@ export class MyApp {
     });
     this.menuCtrl.swipeEnable(false)
     this.pageSettings = [
-      { title: 'Home', page: HomePage,icon:"ios-home-outline" },
-      { title: 'Settings', page: SettingsPage,icon:"ios-settings-outline" },
+      { title: 'Home', page: 'HomePage',icon:"ios-home-outline" },
+      { title: 'Settings', page: 'SettingsPage',icon:"ios-settings-outline" },
      // { title: 'Contact Us', page: ContactUsPage,icon:"ios-call-outline" },
     //{ title: 'Deposit Cash', page: DepositMainPage,icon:"ios-cash-outline" },
-      { title: 'Logout', page: LoginPage,icon:"ios-log-out" },
+      { title: 'Logout', page: 'LoginPage',icon:"ios-log-out" },
 
     ];
     this.events.subscribe("userLogedIn", (data) => {
@@ -56,18 +56,14 @@ export class MyApp {
   }
   openPageHomePage() {
     this.menuCtrl.close();
-    this.nav.setRoot(HomePage);
+    this.nav.setRoot('HomePage');
   }
-
-  openContactUsPage() {
-    this.menuCtrl.close();
-    this.nav.push(ContactUsPage);
-  }
+ 
   openDepositMainPage() {
     this.customerProvider.getLocallyStoredUser().then(user => {
       if (user.isTeller) {
         this.menuCtrl.close();
-        this.nav.push(DepositMainPage);
+        this.nav.push('DepositMainPage');
       } else {
 
         let alert = this.alertCtrl.create({
@@ -82,16 +78,13 @@ export class MyApp {
 
   logout() {
     this.menuCtrl.close();
-    this.nav.setRoot(LoginPage);
+    this.nav.setRoot('LoginPage');
   }
 
   openPage(pageSetting) {
     this.menuCtrl.close();
-    if (pageSetting.page == HomePage|| pageSetting.page == LoginPage) {
+    if (pageSetting.page == 'HomePage'|| pageSetting.page == 'LoginPage') {
       this.nav.setRoot(pageSetting.page);
-    }
-    else if (pageSetting.page == DepositMainPage) {
-      this.openDepositMainPage()
     }
     else
       this.nav.push(pageSetting.page);

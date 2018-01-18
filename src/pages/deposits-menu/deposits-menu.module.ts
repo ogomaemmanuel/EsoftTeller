@@ -9,5 +9,8 @@ import { DepositsMenuPage } from './deposits-menu';
   imports: [
     IonicPageModule.forChild(DepositsMenuPage),
   ],
+  exports:[
+    DepositsMenuPage
+  ]
 })
 export class DepositsMenuPageModule {}

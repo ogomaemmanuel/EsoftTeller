@@ -9,5 +9,8 @@ import { ChangePasswordPage } from './change-password';
   imports: [
     IonicPageModule.forChild(ChangePasswordPage),
   ],
+  exports:[
+    ChangePasswordPage
+  ]
 })
 export class ChangePasswordPageModule {}
