@@ -36,18 +36,18 @@ import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { ExtraMenuPopoverPage } from '../pages/extra-menu-popover/extra-menu-popover';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { CompanyDetailsProvider } from '../providers/company-details/company-details';
+import { PipesModule } from '../commonFunctions/pipes.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    TrimPipe,
-   
     
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpModule,    
     IonicModule.forRoot(MyApp),
+    PipesModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
          driverOrder: ['indexeddb', 'sqlite', 'websql']

@@ -6,9 +6,9 @@
 <ion-content>
   <ion-list>
       <button ion-item *ngFor="let accountDetail of customerAccounts" (click)="getMiniStatement(accountDetail)">
-        {{accountDetail.productName|trim|titlecase}}
+        {{accountDetail.productName|TrimPipe|titlecase}}
         <ion-note item-end>
-          {{accountDetail.accountNo|trim}}
+          {{accountDetail.accountNo|TrimPipe}}
         </ion-note>
       </button>
   </ion-list>

@@ -1,6 +1,7 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {Pipe, PipeTransform, Injectable} from '@angular/core';
  
-@Pipe({name: 'trim'})
+@Pipe({name: 'TrimPipe'})
+@Injectable()
 export class TrimPipe implements PipeTransform {
   transform(value: any) {
     if (!value) {

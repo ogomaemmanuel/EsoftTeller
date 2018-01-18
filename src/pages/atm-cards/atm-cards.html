@@ -19,7 +19,7 @@
       <img src="assets/images/credit-card.png" />
       <ion-card-content>
         <ion-card-title>
-          <p style="font-size: 16px; text-align: center;">Account: {{ atmCard.accountNo|trim}}</p>
+          <p style="font-size: 16px; text-align: center;">Account: {{ atmCard.accountNo|TrimPipe}}</p>
         <hr/>
         </ion-card-title>
         <ion-item>
@@ -28,15 +28,15 @@
         </ion-item>
         <ion-item>
             <ion-label style="font-size: 15px; text-align:left;">Card Number</ion-label>
-            <ion-label style="font-size: 12px; text-align:left;" item-end>{{ atmCard.cardNumber|trim}}</ion-label>
+            <ion-label style="font-size: 12px; text-align:left;" item-end>{{ atmCard.cardNumber|TrimPipe}}</ion-label>
         </ion-item>
         <ion-item>
             <ion-label style="font-size: 15px; text-align:left;">Branch</ion-label>
-            <ion-label style="font-size: 12px; text-align:right;" item-end>{{ atmCard.branchName|trim|titlecase}}</ion-label>
+            <ion-label style="font-size: 12px; text-align:right;" item-end>{{ atmCard.branchName|TrimPipe|titlecase}}</ion-label>
         </ion-item>
         <ion-item>
             <ion-label style="font-size: 15px; text-align:left;">Date Linked</ion-label>
-            <ion-label style="font-size: 12px; text-align:left;" item-end>{{ atmCard.dateLinked|trim|date:'medium'}}</ion-label>
+            <ion-label style="font-size: 12px; text-align:left;" item-end>{{ atmCard.dateLinked|TrimPipe|date:'medium'}}</ion-label>
         </ion-item>
       </ion-card-content>
     </ion-card>
