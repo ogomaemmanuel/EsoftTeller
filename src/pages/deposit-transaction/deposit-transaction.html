@@ -21,18 +21,18 @@
       </ion-select>
     </ion-item>
     <ion-item *ngIf="depositFormGroup.controls.ProductCode.hasError('required') && depositFormGroup.controls.ProductCode.touched">
-        <p>Sorry, field account is required!</p>
+        <p ion-text color="danger">Sorry, field account is required!</p>
     </ion-item>
     <ion-item>
       <ion-label floating>Amount</ion-label>
       <ion-input formControlName="TrxAmount" type="text"></ion-input>
     </ion-item>
     <ion-item *ngIf="depositFormGroup.controls.TrxAmount.hasError('required') && depositFormGroup.controls.TrxAmount.touched">
-        <p>Sorry, field amount is required!</p>
+        <p ion-text color="danger">Sorry, field amount is required!</p>
     </ion-item>
 
     <ion-item *ngIf="depositFormGroup.controls.TrxAmount.hasError('pattern') && depositFormGroup.controls.TrxAmount.touched">
-        <p>Sorry, Enter a valid input!</p>
+        <p ion-text color="danger">Sorry, Enter a valid input!</p>
     </ion-item>
     <div padding>
       <button type="submit" [disabled]="!depositFormGroup.valid" ion-button block>Commit</button>

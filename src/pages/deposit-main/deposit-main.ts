@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerDetailsserviceProvider } from '../../providers/customer-detailsservice/customer-detailsservice';
 import { DepositsMenuPage } from '../deposits-menu/deposits-menu';
@@ -25,6 +25,7 @@ export class DepositMainPage {
     public formBuilder: FormBuilder,
     public customerDetailsserviceProvider: CustomerDetailsserviceProvider,
     public alertCtrl: AlertController,
+    private LoadingCtrl: LoadingController
   ) {
   }
 
@@ -44,14 +45,20 @@ export class DepositMainPage {
     });
   }
   submit() {
+let loader = this.LoadingCtrl.create({
+  content:"loading...",
+});
+loader.present();
     this.customerDetailsserviceProvider
       .getCustomerDetailsByNumber(this.customerFormGroup.value.CustomerNo)
       .subscribe(resp => {
+        loader.dismiss();
         if (resp.ok) {
           this.confirmDeposit(resp.json());
         }
       },
       err => {
+        loader.dismiss();
         if (err.status == 404) {
           this.alertMemberNotFoundError(JSON.parse(err._body).message);
         }
