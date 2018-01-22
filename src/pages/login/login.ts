@@ -15,6 +15,7 @@ import { Validators } from '@angular/forms';
 import { ChangeOtpPage } from '../change-otp/change-otp';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { Storage } from '@ionic/storage';
+import { TellerServiceProvider } from '../../providers/teller-service/teller-service';
 
 /**
  * Generated class for the LoginPage page.
@@ -43,14 +44,15 @@ export class LoginPage implements OnInit {
     private errorAlertProvider: ErrorAlertProvider,
     private loadingCtrl: LoadingController,
     private storage: Storage,
+    private tellerServiceProvider: TellerServiceProvider,
     public alertCtrl: AlertController) {
     // this.menuCtrl.enabled=false;
   }
 
   ngOnInit(): void {
     this.userLoginFormGroup = this.formBuilder.group({
-      MemberNo: ['', Validators.compose([Validators.required, Validators.pattern('[0-9]{1,}')])],
-      Pin: ['', Validators.compose([Validators.required, Validators.maxLength(4), Validators.minLength(4), Validators.pattern('[0-9]{4,4}')])],
+      TellerName: ['', Validators.compose([Validators.required, Validators.pattern('\\w+')])],
+      TellerPassword: ['', Validators.compose([Validators.required])],
      // DeviceInfo: new FormControl('', Validators.compose([Validators.required])),
     })
     //this.getUserMemberNo();
@@ -59,7 +61,7 @@ export class LoginPage implements OnInit {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     this.menuCtrl.swipeEnable(false)
-
+    
   }
   ionViewWillEnter() {
     this.menuCtrl.swipeEnable(false)
@@ -71,20 +73,20 @@ export class LoginPage implements OnInit {
   }
   authenticate() {
     let MemberNo = this.userLoginFormGroup.value['MemberNo'];
-    let pin = this.userLoginFormGroup.value['Pin']
+    let pin = this.userLoginFormGroup.value['TellerPassword']
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
     });
     loader.present();
-    this.userAuthProvider.authenticateUser(pin, MemberNo).subscribe(loginStatus => {
+    this.tellerServiceProvider.Login(this.userLoginFormGroup.value).subscribe(loginStatus => {
       if (loginStatus.ok) {
         loader.dismiss();
-        if (loginStatus.json().user.otPwrd)
-          this.navCtrl.push('ChangeOtpPage', { userId: loginStatus.json().user.tbl_CustomerId });
-        else {
+        //if (loginStatus.json().user.otPwrd)
+         // this.navCtrl.push('ChangeOtpPage', { userId: loginStatus.json().user.tbl_CustomerId });
+        //else {
           this.storeUserMemberNo(MemberNo);
-          this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().user.tbl_CustomerId });
-        }
+          this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().tbl_usersID });
+        //}
       }
     }, error => {
       loader.dismiss();

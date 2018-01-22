@@ -5,8 +5,8 @@
         <ion-avatar item-left>
           <img src="https://www.joshmorony.com/wp-content/uploads/2016/07/cloudo-screenshots.png">
         </ion-avatar>
-        <h2>{{customer.customerName|TrimPipe|titlecase}}</h2>
-        <h3>{{customer.mobileNo}}</h3>
+        <h2>{{customer.loginName|TrimPipe|titlecase}}</h2>
+        <h3>{{customer.employmentNumber}}</h3>
       </ion-item>
     </ion-list>
   </ion-header>
@@ -19,16 +19,7 @@
     </ion-list>
   </ion-content>
 <ion-footer>
-  <!-- <ion-segment [(ngModel)]="icons" color="secondary">
-    <ion-segment-button value="camera">
-      <ion-icon name="camera"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="bookmark">
-      <ion-icon name="bookmark"></ion-icon>
-    </ion-segment-button>
-  </ion-segment> -->
   <p ion-text text-center color="primary">Powered By Ecom Technologies Ltd</p>
-  
 </ion-footer>
 
 </ion-menu>

@@ -1,45 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, MenuController } from 'ionic-angular';
-import { BalacesPage } from "../balaces/balaces";
-import { Customer } from "../../models/customer";
-import { CustomerDetailsserviceProvider } from "../../providers/customer-detailsservice/customer-detailsservice";
-import { Events, AlertController, LoadingController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { MinistatementMenuPage } from '../ministatement-menu/ministatement-menu';
-import { AtmCardsPage } from '../atm-cards/atm-cards';
 import { PopoverController } from 'ionic-angular/components/popover/popover-controller';
-import { ExtraMenuPopoverPage } from '../extra-menu-popover/extra-menu-popover';
 import { CompanyDetailsProvider } from '../../providers/company-details/company-details';
 import { IonicPage } from 'ionic-angular/navigation/ionic-page';
-export interface PageInterface {
-  title: string;
-  pageName: string;
-  tabComponent?: any;
-  index?: number;
-  icon: string;
-}
+import { TellerServiceProvider } from '../../providers/teller-service/teller-service';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [CustomerDetailsserviceProvider],
-
 })
 @IonicPage()
 export class HomePage implements OnInit {
-
-  private customer: Customer;
   public companyName: string = "";
   constructor(public menuCtrl: MenuController,
     public storage: Storage,
-    public loadingCtrl: LoadingController,
     public events: Events,
-    public customerDetPro: CustomerDetailsserviceProvider,
     public navCtrl: NavController,
     private popoverCtrl: PopoverController,
     private companyDetailsProvider: CompanyDetailsProvider,
+    private tellerServiceProvider: TellerServiceProvider,
     public navParams: NavParams) {
-
-    //this.menuCtrl.enabled(true);
 
   }
   ionViewWillEnter() {
@@ -51,17 +32,11 @@ export class HomePage implements OnInit {
     var userId = this.navParams.get('userId');
     console.log("the userId is ", userId);
     if (userId !== undefined) {
-      /* let loader = this.loadingCtrl.create({
-        content: "Please wait...",
+      this.tellerServiceProvider.GetTellerDetails(userId).subscribe(data => {
+       let teller = data;
+        this.storage.set("customerDetails", JSON.stringify(teller.json()))
+        this.events.publish("userLogedIn", teller.json());
       });
-      loader.present(); */
-      this.customerDetPro.getCustumerDetails(userId).subscribe(data => {
-        this.customer = data;
-        this.storage.set("customerDetails", JSON.stringify(this.customer))
-        this.events.publish("userLogedIn", this.customer);
-        //loader.dismiss();
-      });
-
     }
   }
   ionViewDidLoad() {

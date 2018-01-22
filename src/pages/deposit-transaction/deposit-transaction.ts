@@ -114,7 +114,5 @@ export class DepositTransactionPage implements OnInit {
     console.log("formated amount is ", formatter.format(oldTrxAmount));
     this.depositFormGroup.controls["TrxAmount"].setValue(formatter.format(oldTrxAmount));
     this.depositFormGroup.controls["TrxAmount"].updateValueAndValidity();
-
-
   }
 }

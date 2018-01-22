@@ -6,8 +6,6 @@ import { LoginPage } from '../pages/login/login'
 import { HomePage } from "../pages/home/home";
 import { Customer } from "../models/customer";
 import { Events, MenuController, AlertController } from 'ionic-angular';
-import { ContactUsPage } from '../pages/contact-us/contact-us';
-import { DepositMainPage } from '../pages/deposit-main/deposit-main';
 import { CustomerProvider } from '../providers/customer/customer';
 import { SettingsPage } from '../pages/settings/settings';
 
@@ -17,7 +15,7 @@ import { SettingsPage } from '../pages/settings/settings';
   // pipes:[]
 })
 export class MyApp {
-  customer: Customer = new Customer();
+  customer: any = {};
   rootPage: any = 'LoginPage';
   @ViewChild(Nav) nav: Nav;
   pageSettings: Array<{ title: string, page: any,icon:string }>;
@@ -47,11 +45,14 @@ export class MyApp {
     ];
     this.events.subscribe("userLogedIn", (data) => {
       this.customer = data;
-      if(!this.customer.isTeller){
+      console.clear();
+
+      console.log("customer from subscrion in app module",this.customer);
+     /*  if(!this.customer.isTeller){
         if(this.pageSettings[3].page==DepositMainPage){
         this.pageSettings.splice(3,1);
         }
-      }
+      } */
     });
   }
   openPageHomePage() {

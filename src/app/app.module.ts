@@ -37,6 +37,7 @@ import { ExtraMenuPopoverPage } from '../pages/extra-menu-popover/extra-menu-pop
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { CompanyDetailsProvider } from '../providers/company-details/company-details';
 import { PipesModule } from '../commonFunctions/pipes.module';
+import { TellerServiceProvider } from '../providers/teller-service/teller-service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PipesModule } from '../commonFunctions/pipes.module';
     ErrorAlertProvider,
     EndPointHostProvider,
     CompanyDetailsProvider,
+    TellerServiceProvider,
    
    
   ]
