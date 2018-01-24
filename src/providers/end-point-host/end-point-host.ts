@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
+
 
 /*
   Generated class for the EndPointHostProvider provider.
@@ -16,6 +16,6 @@ private  productionHost:string="http://192.168.0.213:7010/EsoftMobileApi_Publish
   }
 
   public  getHost():string{
-     return this.productionHost;
+     return this.devHost;
   }
 }

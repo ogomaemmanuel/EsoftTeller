@@ -2,13 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPage } from '../pages/login/login'
-import { HomePage } from "../pages/home/home";
-import { Customer } from "../models/customer";
 import { Events, MenuController, AlertController } from 'ionic-angular';
 import { CustomerProvider } from '../providers/customer/customer';
-import { SettingsPage } from '../pages/settings/settings';
-
 @Component({
   templateUrl: 'app.html',
   // providers:[ CustomerDetailsserviceProvider]
@@ -16,6 +11,7 @@ import { SettingsPage } from '../pages/settings/settings';
 })
 export class MyApp {
   customer: any = {};
+  showSplitPane:boolean=true;
   rootPage: any = 'LoginPage';
   @ViewChild(Nav) nav: Nav;
   pageSettings: Array<{ title: string, page: any,icon:string }>;
@@ -30,7 +26,8 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
+      //statusBar.styleDefault();
+      statusBar.backgroundColorByHexString('#1976d2');
       splashScreen.hide();
 
     });
@@ -38,21 +35,12 @@ export class MyApp {
     this.pageSettings = [
       { title: 'Home', page: 'HomePage',icon:"ios-home-outline" },
       { title: 'Settings', page: 'SettingsPage',icon:"ios-settings-outline" },
-     // { title: 'Contact Us', page: ContactUsPage,icon:"ios-call-outline" },
-    //{ title: 'Deposit Cash', page: DepositMainPage,icon:"ios-cash-outline" },
       { title: 'Logout', page: 'LoginPage',icon:"ios-log-out" },
 
     ];
     this.events.subscribe("userLogedIn", (data) => {
       this.customer = data;
-      console.clear();
-
-      console.log("customer from subscrion in app module",this.customer);
-     /*  if(!this.customer.isTeller){
-        if(this.pageSettings[3].page==DepositMainPage){
-        this.pageSettings.splice(3,1);
-        }
-      } */
+      this.showSplitPane=true;
     });
   }
   openPageHomePage() {
@@ -78,8 +66,11 @@ export class MyApp {
   }
 
   logout() {
+    this.showSplitPane=false;
     this.menuCtrl.close();
-    this.nav.setRoot('LoginPage');
+    this.nav.setRoot('LoginPage').then(()=>{
+      this.showSplitPane=false;
+    });
   }
 
   openPage(pageSetting) {

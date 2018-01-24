@@ -18,7 +18,7 @@ export class DepositTransactionProvider extends EndPointHostProvider {
     console.log('Hello DepositTransactionProvider Provider');
   }
 
-  public depositCash(cashTrx:any){
+  public depositCash(cashTrx:any,token?:any){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });

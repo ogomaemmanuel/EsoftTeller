@@ -13,6 +13,8 @@ import { TellerServiceProvider } from '../../providers/teller-service/teller-ser
 @IonicPage()
 export class HomePage implements OnInit {
   public companyName: string = "";
+  public userId:any;
+  public loginToken:any;
   constructor(public menuCtrl: MenuController,
     public storage: Storage,
     public events: Events,
@@ -20,6 +22,7 @@ export class HomePage implements OnInit {
     private popoverCtrl: PopoverController,
     private companyDetailsProvider: CompanyDetailsProvider,
     private tellerServiceProvider: TellerServiceProvider,
+    
     public navParams: NavParams) {
 
   }
@@ -29,17 +32,31 @@ export class HomePage implements OnInit {
 
 
   ngOnInit(): void {
-    var userId = this.navParams.get('userId');
-    console.log("the userId is ", userId);
-    if (userId !== undefined) {
-      this.tellerServiceProvider.GetTellerDetails(userId).subscribe(data => {
-       let teller = data;
-        this.storage.set("customerDetails", JSON.stringify(teller.json()))
-        this.events.publish("userLogedIn", teller.json());
-      });
-    }
+    this.userId = this.navParams.get('userId');
+    this.loginToken = this.navParams.get('token');
+    
   }
   ionViewDidLoad() {
+   
+    console.log("the userId is ", this.userId);
+    if (this.userId !== undefined) {
+this.storage.ready().then(()=>{
+  this.storage.get("token").then(token=>{
+    console.log("Token in HomePage",JSON.parse( token))
+    this.tellerServiceProvider.GetTellerDetails(this.userId,this.loginToken).subscribe(data => {
+      let teller = data;
+       this.storage.set("customerDetails", JSON.stringify(teller.json()))
+       this.events.publish("userLogedIn", teller.json());
+     });
+  })
+})
+
+      
+     
+    }
+
+
+
     this.getCompanyName();
   }
   goToDepositCash() {

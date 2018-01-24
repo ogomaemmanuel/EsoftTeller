@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, MenuController, ToastController, A
 import { RegistrationModel } from "../../models/registrationModel";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountsDetailsServiceProvider } from '../../providers/acconts-details-service/acconts-details-service';
-import { LoginPage } from '../login/login';
 import { Device } from '@ionic-native/device';
 import { ErrorAlertProvider } from '../../providers/error-alert/error-alert';
 

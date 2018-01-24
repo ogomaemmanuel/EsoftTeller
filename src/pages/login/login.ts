@@ -4,16 +4,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserAuthProvider } from '../../providers/user-auth/user-auth';
 import { AlertController, MenuController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
-import { RegistrationPage } from '../registration/registration';
-import { HomePage } from '../home/home';
-import { ContactUsPage } from '../contact-us/contact-us';
 import { ErrorAlertProvider } from '../../providers/error-alert/error-alert';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { ChangeOtpPage } from '../change-otp/change-otp';
-import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { Storage } from '@ionic/storage';
 import { TellerServiceProvider } from '../../providers/teller-service/teller-service';
 
@@ -81,12 +76,13 @@ export class LoginPage implements OnInit {
     this.tellerServiceProvider.Login(this.userLoginFormGroup.value).subscribe(loginStatus => {
       if (loginStatus.ok) {
         loader.dismiss();
-        //if (loginStatus.json().user.otPwrd)
-         // this.navCtrl.push('ChangeOtpPage', { userId: loginStatus.json().user.tbl_CustomerId });
-        //else {
-          this.storeUserMemberNo(MemberNo);
-          this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().tbl_usersID });
-        //}
+        let token=loginStatus.headers.get("Authorization");
+        console.log("the token is",token);
+        this.storage.set("token",JSON.stringify(token)).then(()=>{
+          //this.storeUserMemberNo(MemberNo);
+          this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().tbl_usersID,token:token});
+        });
+        
       }
     }, error => {
       loader.dismiss();

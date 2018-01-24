@@ -5,7 +5,6 @@ import { AccountsDetailsServiceProvider } from '../../providers/acconts-details-
 import { Customer } from '../../models/customer';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { AlertController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the SettingsPage page.

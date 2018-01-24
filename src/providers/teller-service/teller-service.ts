@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 import { EndPointHostProvider } from '../end-point-host/end-point-host';
+import { Headers } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
 
 /*
   Generated class for the TellerServiceProvider provider.
@@ -12,7 +16,7 @@ import { EndPointHostProvider } from '../end-point-host/end-point-host';
 @Injectable()
 export class TellerServiceProvider extends EndPointHostProvider {
 
-  constructor(public http: Http) {
+  constructor(public http: Http,private storage:Storage) {
     super();
     console.log('Hello TellerServiceProvider Provider');
   }
@@ -22,7 +26,10 @@ export class TellerServiceProvider extends EndPointHostProvider {
    return this.http.get(this.getHost()+"teller/login",{params:teller}).map(resp=>resp);
   }
 
-  public GetTellerDetails(tellerId:string){
-    return this.http.get(this.getHost()+"teller/"+tellerId+"/details").map(resp=>resp);
+  public GetTellerDetails(tellerId:string,token?:any){
+    var headers = new Headers();
+    headers.append('Authorization',token);    
+    let options = new RequestOptions({ headers: headers });    
+    return this.http.get(this.getHost()+"teller/"+tellerId+"/details",options).map(resp=>resp);
   }
 }

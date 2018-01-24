@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { MinistatementProvider } from '../../providers/ministatement/ministatement';
-import { MinistatementAccountsPage } from '../ministatement-accounts/ministatement-accounts';
-
 /**
  * Generated class for the MinistatementMenuPage page.
  *

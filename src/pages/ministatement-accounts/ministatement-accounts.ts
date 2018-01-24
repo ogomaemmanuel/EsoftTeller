@@ -4,7 +4,6 @@ import { MinistatementProvider } from '../../providers/ministatement/ministateme
 import { CustomerProvider } from '../../providers/customer/customer';
 import { ProductsView } from '../../models/productsView';
 import { MiniStatement } from '../../models/ministatementModel';
-import { MinistatementPage } from '../ministatement/ministatement';
 
 /**
  * Generated class for the MinistatementAccountsPage page.
@@ -101,7 +100,7 @@ export class MinistatementAccountsPage implements OnInit {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
-        this.navCtrl.push(MinistatementPage, { ministatements: this.miniStatements,product:this.selectedProduct });
+        this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
     });
   }

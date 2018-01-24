@@ -7,6 +7,7 @@ import { DeviceInfoProvider } from '../../providers/device-info/device-info';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { GreatorThanZeroValidator } from '../../commonFunctions/GreatorThanZeroValidator';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
+import{Storage} from '@ionic/storage'
 
 /**
  * Generated class for the DepositTransactionPage page.
@@ -35,6 +36,7 @@ export class DepositTransactionPage implements OnInit {
     public deviceInfoProvider: DeviceInfoProvider,
     public customerProvider: CustomerProvider,
     private loadingCtrl: LoadingController,
+    private storage:Storage,
   ) {
   }
   ngOnInit(): void {
@@ -66,14 +68,17 @@ export class DepositTransactionPage implements OnInit {
         content:"processing...."
       })
       loader.present();
-      this.depositTransactionProvider.depositCash(this.depositTrx).subscribe(res => {
-        if (res.ok) {
+      this.storage.get("token").then(token=>{
+        this.depositTransactionProvider.depositCash(this.depositTrx,token).subscribe(res => {
+          if (res.ok) {
+            loader.dismiss();
+            this.showRedirectDialog();
+          }
+        }, error => {
           loader.dismiss();
-          this.showRedirectDialog();
-        }
-      }, error => {
-        loader.dismiss();
+        });
       });
+     
     })
   }
 
