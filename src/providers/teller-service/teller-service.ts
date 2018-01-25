@@ -28,7 +28,7 @@ export class TellerServiceProvider extends EndPointHostProvider {
 
   public GetTellerDetails(tellerId:string,token?:any){
     var headers = new Headers();
-    headers.append('Authorization',token);    
+    headers.append('Token',token);    
     let options = new RequestOptions({ headers: headers });    
     return this.http.get(this.getHost()+"teller/"+tellerId+"/details",options).map(resp=>resp);
   }

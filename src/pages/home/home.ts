@@ -63,6 +63,14 @@ this.storage.ready().then(()=>{
     this.navCtrl.push('DepositMainPage');
   }
 
+  goToCustomerBalances(){
+    this.navCtrl.push('CustomerBalanceMainPage');
+  }
+
+  goToCustomerMiniStatements(){
+    this.navCtrl.push('CustomerMinistamentMainPage');
+  }
+
 
 
   presentExtraMenuPopover(event: any) {

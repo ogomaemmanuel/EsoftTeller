@@ -8,6 +8,7 @@ import { CustomerProvider } from '../../providers/customer/customer';
 import { GreatorThanZeroValidator } from '../../commonFunctions/GreatorThanZeroValidator';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import{Storage} from '@ionic/storage'
+import { ErrorAlertProvider } from '../../providers/error-alert/error-alert';
 
 /**
  * Generated class for the DepositTransactionPage page.
@@ -37,6 +38,7 @@ export class DepositTransactionPage implements OnInit {
     public customerProvider: CustomerProvider,
     private loadingCtrl: LoadingController,
     private storage:Storage,
+    private errorAlert: ErrorAlertProvider
   ) {
   }
   ngOnInit(): void {
@@ -76,6 +78,7 @@ export class DepositTransactionPage implements OnInit {
           }
         }, error => {
           loader.dismiss();
+          this.errorAlert.alertError("Cash Deposit Error","")
         });
       });
      

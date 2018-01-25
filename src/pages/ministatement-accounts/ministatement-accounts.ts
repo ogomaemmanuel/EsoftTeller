@@ -21,6 +21,7 @@ import { MiniStatement } from '../../models/ministatementModel';
 export class MinistatementAccountsPage implements OnInit {
   customerAccounts: ProductsView[] = [];
   accountType: any;
+  customerId:any;
   selectedProduct:string;
   miniStatements: MiniStatement[] = []
   constructor(
@@ -35,6 +36,7 @@ export class MinistatementAccountsPage implements OnInit {
   ngOnInit(): void {
     console.log("Nav Parameres", this.navParams.get("accounts"));
     this.customerAccounts = this.navParams.get("accounts");
+    this.customerId= this.navParams.get("customerId");
     this.accountType = this.navParams.get("accountType");
 
   }
@@ -63,14 +65,14 @@ export class MinistatementAccountsPage implements OnInit {
       content: "loading...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getSavingsMiniStatement(userId, account).subscribe(ministatementsObject => {
+    
+      this.ministatementProvider.getSavingsMiniStatement(this.customerId, account).subscribe(ministatementsObject => {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
         this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
-    });
+   
   }
 
   getSharesMiniStatement(account: string) {
@@ -78,14 +80,14 @@ export class MinistatementAccountsPage implements OnInit {
       content: "loading...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getSharesMiniStatement(userId, account).subscribe(ministatementsObject => {
+    
+      this.ministatementProvider.getSharesMiniStatement(this.customerId, account).subscribe(ministatementsObject => {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
         this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
-    });
+   
 
   }
 
@@ -95,13 +97,13 @@ export class MinistatementAccountsPage implements OnInit {
       content: "loading...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getLoansMiniStatement(userId, account).subscribe(ministatementsObject => {
+    
+      this.ministatementProvider.getLoansMiniStatement(this.customerId, account).subscribe(ministatementsObject => {
         this.miniStatements = ministatementsObject;
         loader.dismiss();
         console.log("Ministatemens from api", this.miniStatements, "Accpunts");
         this.navCtrl.push('MinistatementPage', { ministatements: this.miniStatements,product:this.selectedProduct });
       })
-    });
+    
   }
 }

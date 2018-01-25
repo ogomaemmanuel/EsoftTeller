@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
-import { HttpModule } from "@angular/http";
+import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
 import { CustomerProvider } from '../providers/customer/customer';
 import { CustomerDetailsserviceProvider } from '../providers/customer-detailsservice/customer-detailsservice';
 import { AccountsDetailsServiceProvider } from '../providers/acconts-details-service/acconts-details-service';
@@ -19,6 +19,9 @@ import { EndPointHostProvider } from '../providers/end-point-host/end-point-host
 import { CompanyDetailsProvider } from '../providers/company-details/company-details';
 import { PipesModule } from '../commonFunctions/pipes.module';
 import { TellerServiceProvider } from '../providers/teller-service/teller-service';
+import { HttpInterceptor } from '../providers/https-request-interceptor/https-request-interceptor';
+import { HttpFactory } from '../commonFunctions/httpFactory';
+//import { HttpsRequestInterceptorProvider } from '../providers/https-request-interceptor/https-request-interceptor';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,11 @@ import { TellerServiceProvider } from '../providers/teller-service/teller-servic
     EndPointHostProvider,
     CompanyDetailsProvider,
     TellerServiceProvider,
+    {
+      provide: HttpInterceptor,
+      useFactory: HttpFactory,
+      deps: [ XHRBackend, RequestOptions]
+    }
    
    
   ]

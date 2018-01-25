@@ -76,9 +76,9 @@ export class LoginPage implements OnInit {
     this.tellerServiceProvider.Login(this.userLoginFormGroup.value).subscribe(loginStatus => {
       if (loginStatus.ok) {
         loader.dismiss();
-        let token=loginStatus.headers.get("Authorization");
+        let token=loginStatus.headers.get("Token");
         console.log("the token is",token);
-        this.storage.set("token",JSON.stringify(token)).then(()=>{
+        this.storage.set("token",JSON.stringify( token)).then(()=>{
           //this.storeUserMemberNo(MemberNo);
           this.navCtrl.setRoot('HomePage', { userId: loginStatus.json().tbl_usersID,token:token});
         });

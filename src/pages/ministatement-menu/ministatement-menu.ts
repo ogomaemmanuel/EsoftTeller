@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CustomerProvider } from '../../providers/customer/customer';
 import { MinistatementProvider } from '../../providers/ministatement/ministatement';
+import { Customer } from '../../models/customer';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 /**
  * Generated class for the MinistatementMenuPage page.
  *
@@ -15,8 +17,12 @@ import { MinistatementProvider } from '../../providers/ministatement/ministateme
   templateUrl: 'ministatement-menu.html',
   providers: [MinistatementProvider, CustomerProvider]
 })
-export class MinistatementMenuPage {
-  public accounts: any = []
+export class MinistatementMenuPage implements OnInit {
+  ngOnInit(): void {
+   this.customer= this.navParams.get("customer");
+  }
+  public accounts: any = [];
+  public customer:Customer=new Customer();
   constructor(public navCtrl: NavController,
     public customerProvider: CustomerProvider,
     public ministatementProvider: MinistatementProvider,
@@ -34,13 +40,13 @@ export class MinistatementMenuPage {
       content: "loading...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getLoansAccounts(userId).subscribe(userLoanAccounts => {
+   
+      this.ministatementProvider.getLoansAccounts( this.customer.tbl_CustomerID).subscribe(userLoanAccounts => {
         loader.dismiss();
         this.accounts = userLoanAccounts;
-        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Loans Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Loans Accounts",customerId:this.customer.tbl_CustomerID })
       })
-    })
+    
 
   }
 
@@ -50,14 +56,14 @@ export class MinistatementMenuPage {
       content: "loading...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getSavingsAccounts(userId).subscribe(userLoanAccounts => {
+   
+      this.ministatementProvider.getSavingsAccounts(this.customer.tbl_CustomerID).subscribe(userLoanAccounts => {
         this.accounts = userLoanAccounts;
         loader.dismiss();
         console.log("accounts from api", userLoanAccounts, "Accpunts", this.accounts);
-        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Savings Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Savings Accounts",customerId:this.customer.tbl_CustomerID })
       })
-    })
+  
 
   }
   getSharesAccounts() {
@@ -65,13 +71,13 @@ export class MinistatementMenuPage {
       content: "lodaing...",
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(userId => {
-      this.ministatementProvider.getSharesAccounts(userId).subscribe(userLoanAccounts => {
+   
+      this.ministatementProvider.getSharesAccounts(this.customer.tbl_CustomerID).subscribe(userLoanAccounts => {
         this.accounts = userLoanAccounts;
         loader.dismiss();
-        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Shares Accounts" })
+        this.navCtrl.push('MinistatementAccountsPage', { accounts: this.accounts, accountType: "Shares Accounts",customerId:this.customer.tbl_CustomerID })
       })
-    })
+    
 
   }
 }

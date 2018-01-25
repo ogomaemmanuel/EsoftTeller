@@ -36,7 +36,7 @@ export class BalacesPage implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.customer= this.navParams.get('customer');
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad BalacesPage');
@@ -47,14 +47,14 @@ export class BalacesPage implements OnInit {
       content: this.loaderMessage,
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(customerId => {
-      this.accountdetailProv.getSavingsAccountDetails(customerId).subscribe(accounBalances => {
+    
+      this.accountdetailProv.getSavingsAccountDetails(this.customer.tbl_CustomerID).subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
         let modal = this.modalCtrl.create('BalancesDetailsPage',{accountDetails:this.accountDetails,modalTitle:"Saving Balances" });
         modal.present();
       });
-    });
+    
   }
 
   getShareBalances() {
@@ -62,8 +62,7 @@ export class BalacesPage implements OnInit {
       content: this.loaderMessage,
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(customerId => {
-      this.accountdetailProv.getSharesAccountDetails(customerId)
+      this.accountdetailProv.getSharesAccountDetails(this.customer.tbl_CustomerID)
       .subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
@@ -71,7 +70,7 @@ export class BalacesPage implements OnInit {
           {accountDetails:this.accountDetails,modalTitle:"Share Balances" });
         modal.present();
       });
-    });
+   
   }
 
   getLoanBalances() {
@@ -79,14 +78,14 @@ export class BalacesPage implements OnInit {
       content:this.loaderMessage,
     });
     loader.present();
-    this.customerProvider.getLocallyStoredUserId().then(customerId => {
-      this.accountdetailProv.getLoansAccountDetails(customerId).subscribe(accounBalances => {
+    
+      this.accountdetailProv.getLoansAccountDetails(this.customer.tbl_CustomerID).subscribe(accounBalances => {
         this.accountDetails = accounBalances;
         loader.dismiss();
         let modal = this.modalCtrl.create('BalancesDetailsPage',{accountDetails:this.accountDetails,modalTitle:"Loan Balaces" });
         modal.present();
       });
-    });
+   
   }
 
 }

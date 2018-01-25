@@ -21,6 +21,7 @@ export class DepositTransactionProvider extends EndPointHostProvider {
   public depositCash(cashTrx:any,token?:any){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Token',JSON.parse(token));
     let options = new RequestOptions({ headers: headers });
     return this.http.post(this.endPoint+"deposit", cashTrx,options).map(res => res);
 
