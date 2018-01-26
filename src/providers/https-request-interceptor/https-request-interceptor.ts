@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http,Headers, BaseRequestOptions, ConnectionBackend, RequestOptions, RequestOptionsArgs } from '@angular/http';
+import { Http, Headers, BaseRequestOptions, ConnectionBackend, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { Storage } from "@ionic/storage"
+import { Response } from '@angular/http';
 
 /*
   Generated class for the HttpsRequestInterceptorProvider provider.
@@ -15,9 +17,9 @@ export class HttpInterceptor extends Http {
   constructor(
     backend: ConnectionBackend,
     defaultOptions: RequestOptions,
-
+    storage: Storage
   ) {
-    
+
     super(backend, defaultOptions);
   }
 
@@ -27,46 +29,42 @@ export class HttpInterceptor extends Http {
     }
     if (options.headers == null) {
       options.headers = new Headers({
-        'Authorization': `Basic `,
         'X-Auth-Token': localStorage.getItem('token')
       });
     }
     return options;
-}
-
-get(url: string, options?: RequestOptionsArgs): Observable<any> {
- if( options.headers == null ){
-  options.headers=new Headers();
-  options.headers.append("","");
- }
- console.log("get from an intercepter",options);
-  return super.get(url,options)
-      
-      
-}
-
-
-post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-  if( options.headers == null ){
-   options.headers=new Headers();
-   options.headers.append("","");
   }
-   return super.post(url,options)
- }
 
- put(url: string, body: any, options?: RequestOptionsArgs) : Observable<any>{
+  get(url: string, options?: RequestOptionsArgs): Observable<any> {
+    if (options.headers == null) {
+      options.headers = new Headers();
+      options.headers.append("", "");
+    }
+    console.log("get from an intercepter", options);
+    return super.get(url, options)
+  }
 
-  return super.put(url,body,options);
- }
+  post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    if (options.headers == null) {
+      options.headers = new Headers();
+      options.headers.append("", "");
+    }
+    return super.post(url, options)
+  }
 
- delete(url: string, options?: RequestOptionsArgs) : Observable<any>{
-  return super.put(url,options);
- }
- options(url: string, options?: RequestOptionsArgs) : Observable<any>{
-  return super.options(url,options);
- }
- patch(url: string, body: any, options?: RequestOptionsArgs) : Observable<any>{
-  return super.patch(url,body,options);
- }
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+
+    return super.put(url, body, options);
+  }
+
+  delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    return super.put(url, options);
+  }
+  options(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    return super.options(url, options);
+  }
+  patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    return super.patch(url, body, options);
+  }
 
 }

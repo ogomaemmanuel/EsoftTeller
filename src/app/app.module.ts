@@ -8,7 +8,7 @@ import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
 import { CustomerProvider } from '../providers/customer/customer';
 import { CustomerDetailsserviceProvider } from '../providers/customer-detailsservice/customer-detailsservice';
 import { AccountsDetailsServiceProvider } from '../providers/acconts-details-service/acconts-details-service';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { MinistatementProvider } from '../providers/ministatement/ministatement';
 import { AtmCardsProvider } from '../providers/atm-cards/atm-cards';
 import { DepositTransactionProvider } from '../providers/deposit-transaction/deposit-transaction';
@@ -61,7 +61,7 @@ import { HttpFactory } from '../commonFunctions/httpFactory';
     {
       provide: HttpInterceptor,
       useFactory: HttpFactory,
-      deps: [ XHRBackend, RequestOptions]
+      deps: [ XHRBackend, RequestOptions,Storage]
     }
    
    

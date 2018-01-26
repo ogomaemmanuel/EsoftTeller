@@ -11,11 +11,11 @@ import { Device } from '@ionic-native/device';
 */
 @Injectable()
 export class DeviceInfoProvider {
-  public deviceInfo:any;
+  public deviceInfo: any;
   constructor(private device: Device) {
-   this.deviceInfo=this.device;
+    this.deviceInfo = this.device.uuid;
   }
-public getDevice(){
-  return JSON.stringify(this.deviceInfo);
-}
+  public getDevice() {
+    return this.deviceInfo;
+  }
 }

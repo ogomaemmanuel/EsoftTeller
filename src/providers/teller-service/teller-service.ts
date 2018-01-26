@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import 'rxjs/Rx';
 import { EndPointHostProvider } from '../end-point-host/end-point-host';
 import { Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
+import {Observable} from 'rxjs/Observable'
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 /*
   Generated class for the TellerServiceProvider provider.
@@ -14,7 +16,9 @@ import { Header } from 'ionic-angular/components/toolbar/toolbar-header';
   and Angular DI.
 */
 @Injectable()
-export class TellerServiceProvider extends EndPointHostProvider {
+export class TellerServiceProvider extends EndPointHostProvider  {
+  private UserToken:string="";
+  
 
   constructor(public http: Http,private storage:Storage) {
     super();
@@ -28,8 +32,12 @@ export class TellerServiceProvider extends EndPointHostProvider {
 
   public GetTellerDetails(tellerId:string,token?:any){
     var headers = new Headers();
-    headers.append('Token',token);    
+    let tokenPromise =Observable.fromPromise(this.storage.get("token"));
+    return  tokenPromise.flatMap(tokenx=>{
+    console.log("token xxx is",tokenx);
+    headers.append('Token', JSON.parse(tokenx));    
     let options = new RequestOptions({ headers: headers });    
     return this.http.get(this.getHost()+"teller/"+tellerId+"/details",options).map(resp=>resp);
+    })
   }
 }
