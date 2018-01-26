@@ -61,7 +61,7 @@ import { HttpFactory } from '../commonFunctions/httpFactory';
     {
       provide: Http,
       useFactory: HttpFactory,
-      deps: [ XHRBackend, RequestOptions,Storage]
+      deps: [ XHRBackend, RequestOptions,Storage,Device]
     }
    
    

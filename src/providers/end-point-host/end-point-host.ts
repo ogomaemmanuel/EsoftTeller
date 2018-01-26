@@ -16,6 +16,6 @@ private  productionHost:string="http://192.168.0.213:7010/EsoftMobileApi_Publish
   }
 
   public  getHost():string{
-     return this.productionHost;
+     return this.devHost;
   }
 }
