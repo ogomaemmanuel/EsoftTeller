@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
-import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
+import { HttpModule, XHRBackend, RequestOptions, Http } from "@angular/http";
 import { CustomerProvider } from '../providers/customer/customer';
 import { CustomerDetailsserviceProvider } from '../providers/customer-detailsservice/customer-detailsservice';
 import { AccountsDetailsServiceProvider } from '../providers/acconts-details-service/acconts-details-service';
@@ -59,7 +59,7 @@ import { HttpFactory } from '../commonFunctions/httpFactory';
     CompanyDetailsProvider,
     TellerServiceProvider,
     {
-      provide: HttpInterceptor,
+      provide: Http,
       useFactory: HttpFactory,
       deps: [ XHRBackend, RequestOptions,Storage]
     }
