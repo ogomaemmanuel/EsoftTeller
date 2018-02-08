@@ -21,6 +21,8 @@ import { PipesModule } from '../commonFunctions/pipes.module';
 import { TellerServiceProvider } from '../providers/teller-service/teller-service';
 import { HttpInterceptor } from '../providers/https-request-interceptor/https-request-interceptor';
 import { HttpFactory } from '../commonFunctions/httpFactory';
+import { PrintServiceProvider } from '../providers/print-service/print-service';
+import { Printer } from '@ionic-native/printer';
 //import { HttpsRequestInterceptorProvider } from '../providers/https-request-interceptor/https-request-interceptor';
 
 @NgModule({
@@ -52,6 +54,7 @@ import { HttpFactory } from '../commonFunctions/httpFactory';
     MinistatementProvider,
     AtmCardsProvider,
     Device,
+    Printer,
     DepositTransactionProvider,
     DeviceInfoProvider,
     ErrorAlertProvider,
@@ -62,7 +65,8 @@ import { HttpFactory } from '../commonFunctions/httpFactory';
       provide: Http,
       useFactory: HttpFactory,
       deps: [ XHRBackend, RequestOptions,Storage,Device]
-    }
+    },
+    PrintServiceProvider
    
    
   ]

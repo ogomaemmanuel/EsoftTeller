@@ -9,6 +9,7 @@ import { GreatorThanZeroValidator } from '../../commonFunctions/GreatorThanZeroV
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import{Storage} from '@ionic/storage'
 import { ErrorAlertProvider } from '../../providers/error-alert/error-alert';
+import { PrintServiceProvider } from '../../providers/print-service/print-service';
 
 /**
  * Generated class for the DepositTransactionPage page.
@@ -38,7 +39,8 @@ export class DepositTransactionPage implements OnInit {
     public customerProvider: CustomerProvider,
     private loadingCtrl: LoadingController,
     private storage:Storage,
-    private errorAlert: ErrorAlertProvider
+    private errorAlert: ErrorAlertProvider,
+   private   PrintServiceProvider:PrintServiceProvider
   ) {
   }
   ngOnInit(): void {
@@ -74,7 +76,10 @@ export class DepositTransactionPage implements OnInit {
         this.depositTransactionProvider.depositCash(this.depositTrx,token).subscribe(res => {
           if (res.ok) {
             loader.dismiss();
-            this.showRedirectDialog();
+            this.PrintServiceProvider.printFile("eeee").then(()=>{
+              this.showRedirectDialog();
+            });
+           // this.showRedirectDialog();
           }
         }, error => {
           loader.dismiss();
