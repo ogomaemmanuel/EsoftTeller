@@ -66,6 +66,7 @@ export class DepositTransactionPage implements OnInit {
     this.customerProvider.getLocallyStoredUser().then(user => {
       this.depositTrx = this.depositFormGroup.value;
       this.depositTrx.CustomerNo = this.navParams.get("customer").customerNo;
+      this.depositTrx.customerName=this.navParams.get("customer").customerName;
       this.depositTrx.DeviceInfo = this.deviceInfoProvider.getDevice();
       this.depositTrx.TellerLoginCode = user.loginCode;
       let loader = this.loadingCtrl.create({
@@ -75,8 +76,11 @@ export class DepositTransactionPage implements OnInit {
       this.storage.get("token").then(token=>{
         this.depositTransactionProvider.depositCash(this.depositTrx,token).subscribe(res => {
           if (res.ok) {
+            debugger;
+
+            console.log("the receipt is at DepositTransactionPage",res.json())
             loader.dismiss();
-            this.PrintServiceProvider.printFile("eeee").then(()=>{
+            this.PrintServiceProvider.printFile(res.json()).then(()=>{
               this.showRedirectDialog();
             });
            // this.showRedirectDialog();

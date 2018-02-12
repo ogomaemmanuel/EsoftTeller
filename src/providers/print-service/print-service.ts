@@ -21,23 +21,26 @@ export class PrintServiceProvider {
   }
 
   printFile(file:any){
-   return this.printer.isAvailable().then(()=>{this.printerAvailableCallback()},()=>this.printNotAvailableCallBack() );
+   return this.printer.isAvailable().then(()=>{this.printerAvailableCallback(file)},()=>this.printNotAvailableCallBack() );
 
   }
 
-  printerAvailableCallback(){
+  printerAvailableCallback(file:any){
     this.printer.pick().then(printer=>{
       if(printer){
 
         let options: PrintOptions = {
-          name: 'MyDocument',
+          name: 'Customer Receipt',
           printerId: printer,
           duplex: false,
           landscape: true,
-          grayscale: true
+          grayscale: false,
+
         };
-     
-     this.printer.print("<h1>Emmanuel</h1>", options);
+
+        debugger;
+    let receipt=file;
+     this.printer.print(receipt, options);
 
       }
 
@@ -49,5 +52,4 @@ export class PrintServiceProvider {
   printNotAvailableCallBack(){
     this.alertCtr.alertError("Printer not Availabe","print error")
   }
-
 }

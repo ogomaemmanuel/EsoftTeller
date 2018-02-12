@@ -10,12 +10,12 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class EndPointHostProvider {
-private devHost:string="http://ecommobitest.localtunnel.me/"
+private devHost:string="http://cd4749ad.ngrok.io/"
 private  productionHost:string="http://192.168.0.213:7010/EsoftMobileApi_Published/"
   constructor() {
   }
 
   public  getHost():string{
-     return this.productionHost;
+     return this.devHost;
   }
 }
